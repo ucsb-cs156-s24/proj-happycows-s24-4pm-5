@@ -27,7 +27,7 @@ class SystemInfoServiceImplTests  {
   @Test
   void test_getSystemInfo() {
     SystemInfo si = systemInfoService.getSystemInfo();
-    assertTrue(si.getSpringH2ConsoleEnabled());
+    assertTrue(!si.getSpringH2ConsoleEnabled());
     assertTrue(si.getShowSwaggerUILink());
     assertEquals("https://github.com/ucsb-cs156/proj-happycows", si.getSourceRepo());
   }
