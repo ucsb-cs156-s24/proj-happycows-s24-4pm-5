@@ -57,7 +57,7 @@ export function makeCommonsStartEndDate () {
     const currMonth = localTime.getMonth() % 12;
     const nextMonth = new Date(localTime.getFullYear(), currMonth + 1, localTime.getDate()).toISOString().substr(0, 10);
 
-    return today, nextMonth
+    return [today, nextMonth];
 
 }
 

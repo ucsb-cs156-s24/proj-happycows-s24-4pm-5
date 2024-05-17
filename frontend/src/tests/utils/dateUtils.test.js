@@ -76,11 +76,11 @@ describe("dateUtils tests", () => {
   describe ("makeCommonsStartEndDate tests", () => {
 
     it('correctly creates the start and end date for troublsome times', () => {
-      jest.useFakeTimers().setSystemTime(new Date('2022-05-31T21:00:00'));
+      jest.useFakeTimers().setSystemTime(new Date('2022-06-30T21:00:00'));
       const [today, nextMonth] = makeCommonsStartEndDate();
     
-      expect(today).toBe('2022-05-31');
-      expect(nextMonth).toBe('05');
+      expect(today).toBe('2022-06-30');
+      expect(nextMonth).toBe('2022-07-30');
       
       jest.useRealTimers();
     });
