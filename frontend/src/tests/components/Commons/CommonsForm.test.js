@@ -154,7 +154,8 @@ describe("CommonsForm tests", () => {
   it("Check Default Values and correct styles", async () => {
 
     const curr = new Date();
-    const today = curr.toISOString().substr(0, 10);
+    const localTime = new Date(curr.getTime() - curr.getTimezoneOffset() * 60000);
+    const today = localTime.toISOString().split('T')[0];
     const currMonth = curr.getMonth() % 12;
     const nextMonth = new Date(curr.getFullYear(), currMonth + 1, curr.getDate()).toISOString().substr(0, 10);
     const DefaultVals = {
@@ -288,7 +289,8 @@ describe("CommonsForm tests", () => {
 
   it("renders correctly when an initialCommons is not passed in", async () => {
     const curr = new Date();
-    const today = curr.toISOString().substr(0, 10);
+    const localTime = new Date(curr.getTime() - curr.getTimezoneOffset() * 60000);
+    const today = localTime.toISOString().split('T')[0];
     const currMonth = curr.getMonth() % 12;
     const nextMonth = new Date(curr.getFullYear(), currMonth + 1, curr.getDate()).toISOString().substr(0, 10);
     const DefaultVals = {
@@ -360,7 +362,8 @@ test("the correct parameters are passed to useBackend", async () => {
   test("populates form fields with default values when initialCommons is not provided", async () => {
 
     const curr = new Date();
-    const today = curr.toISOString().substr(0, 10);
+    const localTime = new Date(curr.getTime() - curr.getTimezoneOffset() * 60000);
+    const today = localTime.toISOString().split('T')[0];
     const currMonth = curr.getMonth() % 12;
     const nextMonth = new Date(curr.getFullYear(), currMonth + 1, curr.getDate()).toISOString().substr(0, 10);
     const defaultValuesData = {
