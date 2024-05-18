@@ -18,12 +18,12 @@ export default function AdminAnnouncementsPage() {
             },
         }
     );
-    const name = commonsPlus?.commons.name;
+    const commonsName = commonsPlus?.commons.name;
 
     return (
         <BasicLayout>
             <div className="pt-2">
-                <h1>Announcements for {name}</h1>
+                <h1>Announcements for {commonsName}</h1>
             </div>
         </BasicLayout>
     )
