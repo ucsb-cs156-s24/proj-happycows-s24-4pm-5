@@ -2,6 +2,7 @@ package edu.ucsb.cs156.happiercows.services;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +29,7 @@ class SystemInfoServiceImplTests  {
   void test_getSystemInfo() {
     SystemInfo si = systemInfoService.getSystemInfo();
     assertTrue(si.getSpringH2ConsoleEnabled());
-    assertTrue(!si.getShowSwaggerUILink());
+    assertFalse(si.getShowSwaggerUILink());
     assertEquals("https://github.com/ucsb-cs156/proj-happycows", si.getSourceRepo());
   }
 
