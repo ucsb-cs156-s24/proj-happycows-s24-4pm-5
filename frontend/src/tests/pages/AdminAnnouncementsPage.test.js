@@ -7,8 +7,7 @@ import AxiosMockAdapter from "axios-mock-adapter";
 import AdminAnnouncementsPage from "main/pages/AdminAnnouncementsPage";
 import { apiCurrentUserFixtures }  from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import commonsFixtures from "fixtures/commonsFixtures"; 
-import commonsPlusFixtures from "fixtures/commonsPlusFixtures";
+
 
 const mockNavigate = jest.fn();
 jest.mock("react-router-dom", () => ({
