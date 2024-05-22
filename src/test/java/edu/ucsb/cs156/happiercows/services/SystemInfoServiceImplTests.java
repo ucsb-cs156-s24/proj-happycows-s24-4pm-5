@@ -30,8 +30,8 @@ class SystemInfoServiceImplTests  {
   @Test
   void test_getSystemInfo() {
     SystemInfo si = systemInfoService.getSystemInfo();
-    assertTrue(si.getSpringH2ConsoleEnabled());
-    assertTrue(si.getShowSwaggerUILink());
+    assertFalse(si.getSpringH2ConsoleEnabled());
+    assertFalse(si.getShowSwaggerUILink());
     assertEquals("https://github.com/ucsb-cs156-s24/proj-happycows-s24-4pm-5", si.getSourceRepo());
     assertEquals("20243", si.getStartQtrYYYYQ());
     assertEquals("20244", si.getEndQtrYYYYQ());
@@ -46,13 +46,10 @@ class SystemInfoServiceImplTests  {
   void test_githubUrl() {
     assertEquals(
         SystemInfoServiceImpl.githubUrl(
-            "https://github.com/ucsb-cs156/happycows", "abcdef12345"),
-        "https://github.com/ucsb-cs156/happycows/commit/abcdef12345");
+            "https://github.com/ucsb-cs156/proj-happycows-s24-4pm-5", "abcdef12345"),
+        "https://github.com/ucsb-cs156/proj-happycows-s24-4pm-5/commit/abcdef12345");
     assertNull(SystemInfoServiceImpl.githubUrl(null, null));
     assertNull(SystemInfoServiceImpl.githubUrl("x", null));
     assertNull(SystemInfoServiceImpl.githubUrl(null, "x"));
-    assertFalse(si.getShowSwaggerUILink());
-    assertEquals("https://github.com/ucsb-cs156/proj-happycows", si.getSourceRepo());
   }
-
 }
