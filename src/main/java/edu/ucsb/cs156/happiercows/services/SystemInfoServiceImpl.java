@@ -45,19 +45,18 @@ public class SystemInfoServiceImpl extends SystemInfoService {
   }
 
   public SystemInfo getSystemInfo() {
-    SystemInfo si = SystemInfo.builder()
-    .springH2ConsoleEnabled(this.springH2ConsoleEnabled)
-    .showSwaggerUILink(this.showSwaggerUILink)
-    .startQtrYYYYQ(this.startQtrYYYYQ)
-    .endQtrYYYYQ(this.endQtrYYYYQ)
-    .sourceRepo(this.sourceRepo)
-    .oauthLogin(this.oauthLogin)
-    .commitMessage(this.commitMessage)
-    .commitId(this.commitId)
-    .githubUrl(githubUrl(this.sourceRepo, this.commitId))
-    .build();
-  log.info("getSystemInfo returns {}",si);
-  return si;
+    SystemInfo si =
+      SystemInfo.builder()
+        .springH2ConsoleEnabled(this.springH2ConsoleEnabled)
+        .showSwaggerUILink(this.showSwaggerUILink)
+        .startQtrYYYYQ(this.startQtrYYYYQ)
+        .endQtrYYYYQ(this.endQtrYYYYQ)
+        .sourceRepo(this.sourceRepo)
+        .commitMessage(this.commitMessage)
+        .commitId(this.commitId)
+        .githubUrl(githubUrl(this.sourceRepo, this.commitId))
+        .build();
+    log.info("getSystemInfo returns {}", si);
+    return si;
   }
-
 }
