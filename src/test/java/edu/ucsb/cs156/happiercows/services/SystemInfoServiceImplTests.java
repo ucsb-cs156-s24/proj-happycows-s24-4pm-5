@@ -3,6 +3,7 @@ package edu.ucsb.cs156.happiercows.services;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
@@ -50,6 +51,8 @@ class SystemInfoServiceImplTests  {
     assertNull(SystemInfoServiceImpl.githubUrl(null, null));
     assertNull(SystemInfoServiceImpl.githubUrl("x", null));
     assertNull(SystemInfoServiceImpl.githubUrl(null, "x"));
+    assertFalse(si.getShowSwaggerUILink());
+    assertEquals("https://github.com/ucsb-cs156/proj-happycows", si.getSourceRepo());
   }
 
 }
