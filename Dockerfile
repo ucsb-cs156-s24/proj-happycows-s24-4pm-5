@@ -16,6 +16,10 @@ RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
 ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 
+# This approach (copying entire directory including git info) 
+# relies on the dokku setting:
+#   dokku git:set appname keep-git-dir true
+
 COPY . /home/app
 
 ENV PRODUCTION=true

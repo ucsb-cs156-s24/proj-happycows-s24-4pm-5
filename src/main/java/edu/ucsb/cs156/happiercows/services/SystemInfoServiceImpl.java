@@ -34,10 +34,10 @@ public class SystemInfoServiceImpl extends SystemInfoService {
   @Value("${app.oauth.login:/oauth2/authorization/google}")
   private String oauthLogin;
 
-  @Value("${git.commit.message.short:unknown}")
+  @Value("${git.commit.message.short:commit message not found}")
   private String commitMessage;
 
-  @Value("${git.commit.id.abbrev:unknown}")
+  @Value("${git.commit.id.abbrev:commit id not found}")
   private String commitId;
 
   public static String githubUrl(String repo, String commit) {
@@ -51,8 +51,8 @@ public class SystemInfoServiceImpl extends SystemInfoService {
     .startQtrYYYYQ(this.startQtrYYYYQ)
     .endQtrYYYYQ(this.endQtrYYYYQ)
     .sourceRepo(this.sourceRepo)
-    .commitMessage(this.commitMessage)
     .oauthLogin(this.oauthLogin)
+    .commitMessage(this.commitMessage)
     .commitId(this.commitId)
     .githubUrl(githubUrl(this.sourceRepo, this.commitId))
     .build();
