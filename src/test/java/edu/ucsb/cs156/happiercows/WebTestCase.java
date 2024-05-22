@@ -1,13 +1,6 @@
 package edu.ucsb.cs156.happiercows;
 
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.test.context.ActiveProfiles;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.extension.responsetemplating.ResponseTemplateTransformer;
@@ -18,6 +11,17 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 
 import edu.ucsb.cs156.happiercows.services.wiremock.WiremockServiceImpl;
+
+
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.test.context.ActiveProfiles;
+
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 
 @ActiveProfiles("integration")
 public abstract class WebTestCase {
