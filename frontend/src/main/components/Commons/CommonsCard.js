@@ -24,7 +24,7 @@ function isFutureDate(startingDate) {
     }
 }
 
-const CommonsCard = ({ buttonText, buttonLink, commons }) => {
+const CommonsCard = ({ buttonText, buttonLink, commons, leaveButtonLink }) => {
     const testIdPrefix = "commonsCard";
     return (
         <Card.Body style={
@@ -48,8 +48,18 @@ const CommonsCard = ({ buttonText, buttonLink, commons }) => {
                                     } else {
                                         buttonLink(commons.id);
                                     }
-                                    }} >{buttonText}
+                                }}>{buttonText}
                             </Button>
+                            {buttonText === "Visit" &&
+                                <Button
+                                    data-testid={`${testIdPrefix}-button-leave-${commons.id}`}
+                                    size="sm"
+                                    variant="danger"
+                                    onClick={() => leaveButtonLink(commons.id)}
+                                >
+                                    Leave
+                                </Button>
+                            }
                         </Col>
                     }
                 </Row>
@@ -57,8 +67,5 @@ const CommonsCard = ({ buttonText, buttonLink, commons }) => {
         </Card.Body>
     );
 };
-
-
-
 
 export default CommonsCard;
