@@ -13,8 +13,6 @@ export function useSystemInfo() {
         return {
           springH2ConsoleEnabled: false,
           showSwaggerUILink: false,
-          startQtrYYYYQ: "20243",
-          endQtrYYYYQ: "20244",
         };
       }
     },
@@ -23,8 +21,6 @@ export function useSystemInfo() {
         initialData: true,
         springH2ConsoleEnabled: false,
         showSwaggerUILink: false,
-        startQtrYYYYQ: "20243",
-        endQtrYYYYQ: "20244",
       },
     },
   );
