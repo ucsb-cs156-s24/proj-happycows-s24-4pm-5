@@ -46,8 +46,8 @@ class SystemInfoServiceImplTests  {
   void test_githubUrl() {
     assertEquals(
         SystemInfoServiceImpl.githubUrl(
-            "https://github.com/ucsb-cs156/proj-happycows-s24-4pm-5", "abcdef12345"),
-        "https://github.com/ucsb-cs156/proj-happycows-s24-4pm-5/commit/abcdef12345");
+            "https://github.com/ucsb-cs156-s24/proj-happycows-s24-4pm-5", "abcdef12345"),
+        "https://github.com/ucsb-cs156-s24/proj-happycows-s24-4pm-5/commit/abcdef12345");
     assertNull(SystemInfoServiceImpl.githubUrl(null, null));
     assertNull(SystemInfoServiceImpl.githubUrl("x", null));
     assertNull(SystemInfoServiceImpl.githubUrl(null, "x"));
