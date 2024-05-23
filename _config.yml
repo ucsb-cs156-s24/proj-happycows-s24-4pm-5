@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s24/proj-happycows-s24-4pm-5
 owner: ucsb-cs156-s24
 repo_name: proj-happycows-s24-4pm-5
-pull_requests: [{"author":{"id":"U_kgDOBdHhNQ","is_bot":false,"login":"GarvinYoung","name":""},"headRefName":"GY-TrackCommitInfo","number":37,"title":"Github Commit Info Accessible Through /api/systemInfo API Call","url":"https://github.com/ucsb-cs156-s24/proj-happycows-s24-4pm-5/pull/37"}]
+pull_requests: [{"author":{"id":"U_kgDOB2-2pQ","is_bot":false,"login":"nevetsle","name":""},"headRefName":"SL-LeaveButton","number":38,"title":"Leave Button Implemented (FRONTEND)","url":"https://github.com/ucsb-cs156-s24/proj-happycows-s24-4pm-5/pull/38"},{"author":{"id":"U_kgDOBdHhNQ","is_bot":false,"login":"GarvinYoung","name":""},"headRefName":"GY-TrackCommitInfo","number":37,"title":"Github Commit Info Accessible Through /api/systemInfo API Call","url":"https://github.com/ucsb-cs156-s24/proj-happycows-s24-4pm-5/pull/37"}]
