@@ -33,19 +33,9 @@ export default function HomePage({hour=null}) {
     }
   });
 
-  const objectToAxiosParamsLeave = (commonsId) => ({
-    url: "/api/commons/{commonsId}/users/{userId}",
-    method: "DELETE",
-    params: {
-        commonsId
-    }
-});
 
-const leaveMutation = useBackendMutation(
-  ({ commonsId, userId }) => objectToAxiosParamsLeave(commonsId, userId),
-  {},
-  ["/api/currentUser"]
-);
+
+
 
   // Stryker disable all : it is acceptable to exclude useBackendMutation calls from mutation testing
   const mutation = useBackendMutation(
@@ -73,10 +63,7 @@ const leaveMutation = useBackendMutation(
 
   let navigate = useNavigate();
   const visitButtonClick = (id) => { navigate("/play/" + id) };
-  const leaveButtonClick = (commonsId) => {
-    const userId = currentUser.root.user.id;
-    leaveMutation.mutate({ commonsId, userId });
-}
+  const leaveButtonClick = null;
 
   //create a list of commons that the user hasn't joined for use in the "Join a New Commons" list.
   const commonsNotJoinedList = commonsNotJoined(commons, commonsJoined);
@@ -92,7 +79,6 @@ const leaveMutation = useBackendMutation(
         <Container>
           <Row>
             <Col sm><CommonsList commonList={commonsJoined} title="Visit A Commons" buttonText={"Visit"} buttonLink={visitButtonClick}
-            leaveButtonText={"Leave"} 
             leaveButtonLink = {leaveButtonClick} /></Col>
             <Col sm><CommonsList commonList={commonsNotJoinedList} title="Join A New Commons" buttonText={"Join"} buttonLink={mutation.mutate} /></Col>
           </Row>
