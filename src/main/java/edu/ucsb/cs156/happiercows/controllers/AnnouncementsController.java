@@ -73,7 +73,6 @@ public class AnnouncementsController extends ApiController{
         if (startDate == null) { 
             log.info("Start date not specified. Defaulting to current date.");
             startDate = LocalDateTime.now();
-            // startDate = new Date(); 
         }
 
         if (announcementText == "") {
@@ -164,7 +163,6 @@ public class AnnouncementsController extends ApiController{
         if (startDate == null) {
             log.info("Start date not specified. Defaulting to current date.");
             startDate = LocalDateTime.now();
-            // startDate = new Date();
         }
 
         if (endDate != null && startDate.isAfter(endDate)) {
