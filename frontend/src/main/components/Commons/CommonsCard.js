@@ -25,11 +25,11 @@ function isFutureDate(startingDate) {
 const CommonsCard = ({ buttonText, buttonLink, commons }) => {
     const testIdPrefix = "commonsCard";
     return (
-        <Card style={{ border: "2px solid black" }}> 
+        <Card class="bg-orange-300" style={{ border: "2px solid black"}}> 
             <Card.Body style={{ fontSize: "20px", borderTop: "1px solid lightgrey" }}>
                 <Container>
                     <Row>
-                        <Col sx={4} data-testid={`${testIdPrefix}-id-${commons.id}`}>{commons.id}</Col>
+                        {/* <Col sx={4} data-testid={`${testIdPrefix}-id-${commons.id}`}>{commons.id}</Col> */}
                         <Col sx={4} data-testid={`${testIdPrefix}-name-${commons.id}`}>{commons.name}</Col>
                         {buttonText != null &&
                             <Col sm={4}>

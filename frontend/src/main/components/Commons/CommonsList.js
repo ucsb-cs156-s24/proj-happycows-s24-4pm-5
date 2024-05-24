@@ -17,7 +17,10 @@ const CommonsList = (props) => {
                 data-testid="commonsList-title"
                 style={
                     // Stryker disable next-line all: don't test CSS params
-                    { fontSize: "35px" }
+                    { fontSize: "35px",
+    
+                }
+
                 }
                 className="text-center my-3"
             >
@@ -28,8 +31,14 @@ const CommonsList = (props) => {
                 <Card.Subtitle>
                     <Container>
                         <Row>
-                            <Col data-testid="commonsList-subtitle-id" sx={4}>ID#</Col>
-                            <Col data-testid="commonsList-subtitle-name" sx={4}>Common's Name</Col>
+                            {/* <Col data-testid="commonsList-subtitle-id" sx={4}>ID#</Col> */}
+                            
+                            <Col data-testid="commonsList-subtitle-name" sx={4}
+                            style={{fontSize:"20px",
+                        fontFamily:"monospace",
+                        marginBottom:"10px"
+                        }}
+                            >Common's Name</Col>
                             <Col sm={4}></Col>
                         </Row>
                     </Container>
