@@ -25,7 +25,7 @@ function isFutureDate(startingDate) {
 const CommonsCard = ({ buttonText, buttonLink, commons }) => {
     const testIdPrefix = "commonsCard";
     return (
-        <Card style={{ border: "2px solid black" }}> {/* Added border style here */}
+        <Card style={{ border: "2px solid black" }}> 
             <Card.Body style={{ fontSize: "20px", borderTop: "1px solid lightgrey" }}>
                 <Container>
                     <Row>
