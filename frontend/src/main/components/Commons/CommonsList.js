@@ -4,6 +4,7 @@ import { Card, Container, Row, Col } from "react-bootstrap";
 
 const CommonsList = (props) => {
     const defaultMessage = props.title?.includes("Join") ? "join" : "visit";
+    // Stryker disable next-line all: don't test CSS params
     const colors = ["#FFB6C1", "#FFD700", "#ADFF2F", "#87CEFA", "#FF69B4", "#FFA07A", "#20B2AA", "#778899"];
     return (
         <Card
