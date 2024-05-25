@@ -18,10 +18,10 @@ describe("CommonsList tests", () => {
         expect(typeof(subtitle_name.textContent)).toBe('string');
         expect(subtitle_name.textContent).toEqual("Common's Name");
 
-        const subtitle_id = screen.getByTestId("commonsList-subtitle-id");
-        expect(subtitle_id).toBeInTheDocument();
-        expect(typeof(subtitle_id.textContent)).toBe('string');
-        expect(subtitle_id.textContent).toEqual('ID#');
+        // const subtitle_id = screen.getByTestId("commonsList-subtitle-id");
+        // expect(subtitle_id).toBeInTheDocument();
+        // expect(typeof(subtitle_id.textContent)).toBe('string');
+        // expect(subtitle_id.textContent).toEqual('ID#');
 
         const buttons = screen.getAllByTestId(/commonsCard-button/);
         buttons.forEach((b) => {
@@ -39,14 +39,14 @@ describe("CommonsList tests", () => {
             i++;
         })
 
-        i = 0;
-        const ids = screen.getAllByTestId(/commonsCard-id/);
-        ids.forEach((id) => {
-            expect(id).toBeInTheDocument();
-            expect(typeof(id.textContent)).toBe('string');
-            expect(id.textContent).toEqual(commonsFixtures.threeCommons[i].id.toString());
-            i++;
-        })
+        // i = 0;
+        // const ids = screen.getAllByTestId(/commonsCard-id/);
+        // ids.forEach((id) => {
+        //     expect(id).toBeInTheDocument();
+        //     expect(typeof(id.textContent)).toBe('string');
+        //     expect(id.textContent).toEqual(commonsFixtures.threeCommons[i].id.toString());
+        //     i++;
+        // })
     });
 
     test("renders no button when button text is null", () => {
@@ -64,10 +64,10 @@ describe("CommonsList tests", () => {
         expect(typeof(subtitle_name.textContent)).toBe('string');
         expect(subtitle_name.textContent).toEqual("Common's Name");
 
-        const subtitle_id = screen.getByTestId("commonsList-subtitle-id");
-        expect(subtitle_id).toBeInTheDocument();
-        expect(typeof(subtitle_id.textContent)).toBe('string');
-        expect(subtitle_id.textContent).toEqual('ID#');
+        // const subtitle_id = screen.getByTestId("commonsList-subtitle-id");
+        // expect(subtitle_id).toBeInTheDocument();
+        // expect(typeof(subtitle_id.textContent)).toBe('string');
+        // expect(subtitle_id.textContent).toEqual('ID#');
 
         expect(() => screen.getAllByTestId(/commonsCard-button/)).toThrow('Unable to find an element');
 
@@ -80,14 +80,14 @@ describe("CommonsList tests", () => {
             i++;
         })
 
-        i = 0;
-        const ids = screen.getAllByTestId(/commonsCard-id/);
-        ids.forEach((id) => {
-            expect(id).toBeInTheDocument();
-            expect(typeof(id.textContent)).toBe('string');
-            expect(id.textContent).toEqual(commonsFixtures.threeCommons[i].id.toString());
-            i++;
-        })
+        // i = 0;
+        // const ids = screen.getAllByTestId(/commonsCard-id/);
+        // ids.forEach((id) => {
+        //     expect(id).toBeInTheDocument();
+        //     expect(typeof(id.textContent)).toBe('string');
+        //     expect(id.textContent).toEqual(commonsFixtures.threeCommons[i].id.toString());
+        //     i++;
+        // })
     });
 
     test("renders default join UI when there are no commons", () => {

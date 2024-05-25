@@ -4,12 +4,12 @@ import { Card, Container, Row, Col } from "react-bootstrap";
 
 const CommonsList = (props) => {
     const defaultMessage = props.title?.includes("Join") ? "join" : "visit";
-
+    const colors = ["#FFB6C1", "#FFD700", "#ADFF2F", "#87CEFA", "#FF69B4", "#FFA07A", "#20B2AA", "#778899"];
     return (
         <Card
             style={
                 // Stryker disable next-line all: don't test CSS params
-                { opacity: ".9" }
+                { opacity: ".9",boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)"}
             }
             className="my-3 border-0"
         >
@@ -28,7 +28,7 @@ const CommonsList = (props) => {
                 <Card.Subtitle>
                     <Container>
                         <Row>
-                            <Col data-testid="commonsList-subtitle-id" sx={4}>ID#</Col>
+                            {/* <Col data-testid="commonsList-subtitle-id" sx={4}>ID#</Col> */}
                             <Col data-testid="commonsList-subtitle-name" sx={4}>Common's Name</Col>
                             <Col sm={4}></Col>
                         </Row>
@@ -36,7 +36,7 @@ const CommonsList = (props) => {
                 </Card.Subtitle>
                 {
                     props.commonList.map(
-                        (c) => (<CommonsCard key={c.id} commons={c} buttonText={props.buttonText} buttonLink={props.buttonLink} />)
+                        (c) => (<CommonsCard key={c.id} commons={c} buttonText={props.buttonText} buttonLink={props.buttonLink} color = {colors[c.id % colors.length]}/>)
                     )
                 }
             </React.Fragment> 
