@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
@@ -12,7 +12,8 @@ jest.mock("react-router-dom", () => ({
     ...jest.requireActual("react-router-dom"),
     useParams: () => ({
         commonsId: 1
-    })
+    }),
+    useNavigate: () => jest.fn() // Mocking navigate function
 }));
 
 const mockToast = jest.fn();
@@ -24,6 +25,7 @@ jest.mock('react-toastify', () => {
         toast: (x) => mockToast(x)
     };
 });
+
 
 describe("PlayPage tests", () => {
     const axiosMock = new AxiosMockAdapter(axios);
@@ -343,4 +345,52 @@ describe("PlayPage tests", () => {
             expect(screen.getByTestId("playpage-chat-toggle")).toBeInTheDocument();
         });
     })
+
+
+    test("Shows 'Access Denied' message if user is not in the commons", async () => {
+        axiosMock.reset();
+        axiosMock.resetHistory();
+        axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+
+        axiosMock.onGet("/api/currentUser").reply(200, {
+
+        user: {
+            id : 1,
+            fullName : "Steven Le",
+            givenName : "steven",
+            familyName : "Team 5",
+            emailVerified : true,
+            admin : false,
+            commons : [
+                {
+                    id : 2,
+                    name : "TestCommons",
+                }
+            ]
+
+        }});
+        render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <PlayPage />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+    
+        await waitFor(() => {
+            const accessDeniedMessage = screen.getByText("Access Denied.");
+            expect(accessDeniedMessage).toBeInTheDocument();
+            expect(accessDeniedMessage).toHaveStyle('color: red');
+            expect(accessDeniedMessage).toHaveStyle('background-color: black');
+            expect(accessDeniedMessage).toHaveStyle('padding: 50px');
+            expect(accessDeniedMessage).toHaveStyle('text-align: center');
+        });
+    
+    
+    
+    
+    
 });
+
+});
+

@@ -150,6 +150,8 @@ export default function PlayPage() {
         fontSize: "30px",
     };
 
+    const isUserInCommon = currentUser?.root?.user?.commons?.some(common => common.id === parseInt(commonsId));
+
     return (
         <div
             style={{
@@ -160,7 +162,11 @@ export default function PlayPage() {
         >
             <BasicLayout>
                 <Container>
-                    {!!currentUser && <CommonsPlay currentUser={currentUser} />}
+                {isUserInCommon && !!currentUser && <CommonsPlay currentUser={currentUser} />}
+                    {!isUserInCommon && currentUser && <h1 style={{ color: 'red', backgroundColor: 'black', padding: '50px', 
+                    textAlign: 'center' }}>
+                        Access Denied.
+                    </h1> }   
                     {!!commonsPlus && (
                         <CommonsOverview
                             commonsPlus={commonsPlus}
