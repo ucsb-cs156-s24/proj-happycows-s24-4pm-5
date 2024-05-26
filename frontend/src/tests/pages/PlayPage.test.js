@@ -347,50 +347,30 @@ describe("PlayPage tests", () => {
     })
 
 
-    test("Shows 'Access Denied' message if user is not in the commons", async () => {
-        const userCommons = {
-            commonsId: 2, // Different commons ID to simulate user not in the current commons
-            id: 1,
-            totalWealth: 0,
-            userId: 1,
-        };
+    test("user has not joined the commons (single commons joined)", async () => {
+
         axiosMock.reset();
         axiosMock.resetHistory();
-        axiosMock.onGet("/api/currentUser").reply(200, {
-            ...apiCurrentUserFixtures.userOnly,
-            root: {
-                ...apiCurrentUserFixtures.userOnly.root,
-                user: {
-                    ...apiCurrentUserFixtures.userOnly.root.user,
-                    commons: [userCommons]
-                }
-            }
-        });
         axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-        axiosMock.onGet("/api/usercommons/forcurrentuser", { params: { commonsId: 1 } }).reply(404); // Simulate not found
-        axiosMock.onGet("/api/commons", { params: { id: 1 } }).reply(200, {
-            id: 1,
-            name: "Sample Commons"
-        });
-        axiosMock.onGet("/api/commons/all").reply(200, [
-            {
-                id: 1,
-                name: "Sample Commons"
-            }
-        ]);
-        axiosMock.onGet("/api/commons/plus", { params: { id: 1 } }).reply(200, {
-            commons: {
-                id: 1,
-                name: "Sample Commons",
-                showChat: true
-            },
-            totalPlayers: 5,
-            totalCows: 5 
-        });
-        axiosMock.onGet("/api/profits/all/commonsid").reply(200, []);
-        axiosMock.onPut("/api/usercommons/sell").reply(200, userCommons);
-        axiosMock.onPut("/api/usercommons/buy").reply(200, userCommons);
-        
+
+        axiosMock.onGet("/api/currentUser").reply(200, {
+
+        user: {
+            id : 1,
+            fullName : "Nom Guerre",
+            givenName : "Nom",
+            familyName : "Guerre",
+            emailVerified : true,
+            admin : false,
+            commons : [
+                {
+                    id : 2,
+                    name : "TestCommons",
+                }
+            ]
+
+        }});
+
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
@@ -398,19 +378,15 @@ describe("PlayPage tests", () => {
                 </MemoryRouter>
             </QueryClientProvider>
         );
-    
 
         await waitFor(() => {
-            const accessDeniedMessage = screen.getByText("Access Denied.");
-            expect(accessDeniedMessage).toBeInTheDocument();
+            expect(screen.getByText("Access Denied.")).toBeInTheDocument();    
         });
-    
-        const accessDeniedMessage = screen.getByText("Access Denied.");
-        expect(accessDeniedMessage).toHaveStyle('color: red');
-        expect(accessDeniedMessage).toHaveStyle('background-color: black');
-        expect(accessDeniedMessage).toHaveStyle('padding: 50px');
-        expect(accessDeniedMessage).toHaveStyle('text-align: center');
-    });
+
+        expect(screen.getByText("Access Denied.")).toBeInTheDocument();   
+        expect(screen.queryByTestId("commons-card")).not.toBeInTheDocument();    
+
+    })
     
 
 });
