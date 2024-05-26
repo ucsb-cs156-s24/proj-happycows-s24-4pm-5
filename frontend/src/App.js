@@ -60,7 +60,7 @@ function App() {
                 element={<AdminCreateAnnouncementsPage />}
             />
             <Route
-                path="/announcements/edit/:commonsId"
+                path="/announcements/edit/:announcementId"
                 element={<AdminEditAnnouncementsPage />}
             />
         </>
