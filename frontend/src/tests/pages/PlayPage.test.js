@@ -347,7 +347,7 @@ describe("PlayPage tests", () => {
     })
 
 
-    test("user has not joined the commons (single commons joined)", async () => {
+    test("disallow user from navigating to unjoined common", async () => {
 
         axiosMock.reset();
         axiosMock.resetHistory();
@@ -357,15 +357,15 @@ describe("PlayPage tests", () => {
 
         user: {
             id : 1,
-            fullName : "Nom Guerre",
-            givenName : "Nom",
-            familyName : "Guerre",
+            fullName : "Steven",
+            givenName : "steven",
+            familyName : "Le",
             emailVerified : true,
             admin : false,
             commons : [
                 {
-                    id : 2,
-                    name : "TestCommons",
+                    id : 3,
+                    name : "Disallowed Commons",
                 }
             ]
 
