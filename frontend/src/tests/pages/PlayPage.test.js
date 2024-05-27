@@ -379,18 +379,15 @@ describe("PlayPage tests", () => {
             </QueryClientProvider>
         );
 
-        await waitFor(() => {
-            const accessDeniedElement = screen.getByText("Access Denied.");
-            expect(accessDeniedElement).toBeInTheDocument();
+        const accessDeniedElement = await screen.findByText("Access Denied.");
+        expect(accessDeniedElement).toBeInTheDocument();
     
-            const styles = window.getComputedStyle(accessDeniedElement);
-            expect(styles.backgroundColor).toBe("black");
-            expect(styles.color).toBe("red");
-            expect(styles.textAlign).toBe("center");
-            expect(styles.padding).toBe("50px");
-        });
+        const styles = window.getComputedStyle(accessDeniedElement);
+        expect(styles.backgroundColor).toBe("black");
+        expect(styles.color).toBe("red");
+        expect(styles.textAlign).toBe("center");
+        expect(styles.padding).toBe("50px");
     
-        expect(screen.getByText("Access Denied.")).toBeInTheDocument();
         expect(screen.queryByTestId("commons-card")).not.toBeInTheDocument();
     
 
@@ -416,11 +413,11 @@ test("user has not joined the commons (multiple commons)", async () => {
         commons : [
             {
                 id : 2,
-                name : "TestCommons",
+                name : "Not this one",
             },
             {
                 id : 3,
-                name : "OtherTestCommons",
+                name : "Don't exist!",
             }
         ]
 
@@ -434,19 +431,16 @@ test("user has not joined the commons (multiple commons)", async () => {
         </QueryClientProvider>
     );
 
-    await waitFor(() => {
-        const accessDeniedElement = screen.getByText("Access Denied.");
-        expect(accessDeniedElement).toBeInTheDocument();
+    const accessDeniedElement = await screen.findByText("Access Denied.");
+    expect(accessDeniedElement).toBeInTheDocument();
 
-        const styles = window.getComputedStyle(accessDeniedElement);
-        expect(styles.backgroundColor).toBe("black");
-        expect(styles.color).toBe("red");
-        expect(styles.textAlign).toBe("center");
-        expect(styles.padding).toBe("50px");
-    });
+    const styles = window.getComputedStyle(accessDeniedElement);
+    expect(styles.backgroundColor).toBe("black");
+    expect(styles.color).toBe("red");
+    expect(styles.textAlign).toBe("center");
+    expect(styles.padding).toBe("50px");
 
-    expect(screen.getByText("Access Denied.")).toBeInTheDocument();
-    expect(screen.queryByTestId("commons-card")).not.toBeInTheDocument();  
+    expect(screen.queryByTestId("commons-card")).not.toBeInTheDocument();
 
 })
 
@@ -467,8 +461,8 @@ test("user has joined the commons (single common)", async () => {
         admin : false,
         commons : [
             {
-                id : 4,
-                name : "Test Commons",
+                id : 1,
+                name : "da test zone",
             }
         ]
 
@@ -505,7 +499,7 @@ test("user has joined the commons (multiple commons)", async () => {
     axiosMock.onGet("/api/currentUser").reply(200, {
 
     user: {
-        id : 12,
+        id : 1,
         fullName : "steven le",
         givenName : "steven",
         familyName : "Team 5",
@@ -513,11 +507,11 @@ test("user has joined the commons (multiple commons)", async () => {
         admin : false,
         commons : [
             {
-                id : 2,
+                id : 1,
                 name : "Interesting"
             },
             {
-                id : 5,
+                id : 3,
                 name : "Awesome Common!"
             }
         ]
