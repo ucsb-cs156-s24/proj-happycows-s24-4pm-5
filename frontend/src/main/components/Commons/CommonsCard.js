@@ -33,7 +33,6 @@ const CommonsCard = ({ buttonText, buttonLink, commons ,color}) => {
         }>
             <Container>
                 <Row>
-                    {/* <Col sx={4} data-testid={`${testIdPrefix}-id-${commons.id}`}>{commons.id}</Col> */}
                     <Col sx={4} data-testid={`${testIdPrefix}-name-${commons.id}`}>{commons.name}</Col>
                     {buttonText != null &&
                         <Col sm={4}>
