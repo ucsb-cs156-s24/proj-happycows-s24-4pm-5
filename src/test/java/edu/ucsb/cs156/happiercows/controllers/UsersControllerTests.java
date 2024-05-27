@@ -117,7 +117,7 @@ public class UsersControllerTests extends ControllerTestCase {
         assertEquals("User with id 1 has been restored", json.get("message"));
   }
 
-   @WithMockUser(roles={"ADMIN"})
+  @WithMockUser(roles={"ADMIN"})
   @Test
   public void admin_cannot_suspend_invalid_user() throws Exception {
     when(userRepository.findById(1L)).thenReturn(Optional.empty());
@@ -125,7 +125,7 @@ public class UsersControllerTests extends ControllerTestCase {
     mockMvc.perform(post("/api/admin/users/suspend").param("userId", "1").with(csrf())).andExpect(status().isNotFound());
   }
 
-   @WithMockUser(roles={"ADMIN"})
+  @WithMockUser(roles={"ADMIN"})
   @Test
   public void admin_cannot_restore_invalid_user() throws Exception {
     when(userRepository.findById(1L)).thenReturn(Optional.empty());
