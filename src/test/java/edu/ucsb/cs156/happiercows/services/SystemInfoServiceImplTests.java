@@ -32,7 +32,7 @@ class SystemInfoServiceImplTests  {
     SystemInfo si = systemInfoService.getSystemInfo();
     assertFalse(si.getSpringH2ConsoleEnabled());
     assertFalse(si.getShowSwaggerUILink());
-    assertEquals("https://github.com/ucsb-cs156-s24/proj-happycows-s24-4pm-5", si.getSourceRepo());
+    assertEquals("https://github.com/ucsb-cs156/proj-happycows", si.getSourceRepo());
     assertEquals("20243", si.getStartQtrYYYYQ());
     assertEquals("20244", si.getEndQtrYYYYQ());
     assertNotEquals("commit message not found", si.getCommitMessage());

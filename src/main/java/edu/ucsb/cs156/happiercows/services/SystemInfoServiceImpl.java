@@ -34,7 +34,7 @@ public class SystemInfoServiceImpl extends SystemInfoService {
   private String endQtrYYYYQ;
 
   @Value("${app.sourceRepo}")
-  private String sourceRepo = "https://github.com/ucsb-cs156-s24/proj-happycows-s24-4pm-5";
+  private String sourceRepo = "https://github.com/ucsb-cs156/proj-happycows";
 
   @Value("${app.oauth.login:/oauth2/authorization/google}")
   private String oauthLogin;
