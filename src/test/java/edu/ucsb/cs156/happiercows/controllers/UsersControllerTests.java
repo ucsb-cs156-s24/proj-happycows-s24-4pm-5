@@ -15,14 +15,18 @@ import edu.ucsb.cs156.happiercows.testconfig.TestConfig;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.Optional;
 
 @WebMvcTest(controllers = UsersController.class)
 @Import(TestConfig.class)
@@ -38,6 +42,8 @@ public class UsersControllerTests extends ControllerTestCase {
         .andExpect(status().is(403));
   }
 
+  private User user;
+  
   @WithMockUser(roles = { "USER" })
   @Test
   public void users__user_logged_in() throws Exception {
@@ -73,5 +79,103 @@ public class UsersControllerTests extends ControllerTestCase {
     String responseString = response.getResponse().getContentAsString();
     assertEquals(expectedJson, responseString);
 
+  }
+
+  
+  @WithMockUser(roles = { "ADMIN" })
+  @Test
+  public void testSuspendUser_success() throws Exception {
+      user = User.builder()
+              .id(1L)
+              .email("test@example.com")
+              .suspended(false)
+              .build();
+    
+      when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+
+      MvcResult response = mockMvc.perform(post("/api/admin/users/suspend")
+                      .param("userid", "1")
+                      .with(csrf()))
+              .andExpect(status().isOk())
+              .andReturn();
+
+      // assert
+      verify(userRepository, times(1)).findById(1L);
+      verify(userRepository, times(1)).save(user);
+      Map<String, Object> json = responseToJson(response);
+      assertEquals("User with id 1 has been suspended", json.get("message"));
+      assertEquals(true, user.getSuspended());
+  }
+
+  @WithMockUser(roles = { "ADMIN" })
+  @Test
+  public void testSuspendUser_notFound() throws Exception {
+      user = User.builder()
+              .id(1L)
+              .email("test@example.com")
+              .suspended(false)
+              .build();
+    
+      when(userRepository.findById(eq(1L))).thenReturn(Optional.empty());
+
+      MvcResult response = mockMvc.perform(post("/api/admin/users/suspend")
+                      .param("userid", "1")
+                      .with(csrf()))
+              .andExpect(status().isNotFound())
+              .andReturn();
+
+      // assert
+      verify(userRepository, times(1)).findById(1L);
+      Map<String, Object> json = responseToJson(response);
+      assertEquals("User with id 1 not found", json.get("message"));
+  }
+
+  @WithMockUser(roles = { "ADMIN" })
+  @Test
+  public void testRestoreUser_success() throws Exception {
+      user = User.builder()
+              .id(1L)
+              .email("test@example.com")
+              .suspended(false)
+              .build();
+      
+      user.setSuspended(true);
+      when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+
+      MvcResult response = mockMvc.perform(post("/api/admin/users/restore")
+                      .param("userid", "1")
+                      .with(csrf()))
+              .andExpect(status().isOk())
+              .andReturn();
+
+      // assert
+      verify(userRepository, times(1)).findById(1L);
+      verify(userRepository, times(1)).save(user);
+      Map<String, Object> json = responseToJson(response);
+      assertEquals("User with id 1 has been restored", json.get("message"));
+      assertEquals(false, user.getSuspended());
+  }
+
+  @WithMockUser(roles = { "ADMIN" })
+  @Test
+  public void testRestoreUser_notFound() throws Exception {
+      user = User.builder()
+              .id(1L)
+              .email("test@example.com")
+              .suspended(false)
+              .build();
+      
+      when(userRepository.findById(eq(1L))).thenReturn(Optional.empty());
+
+      MvcResult response = mockMvc.perform(post("/api/admin/users/restore")
+                      .param("userid", "1")
+                      .with(csrf()))
+              .andExpect(status().isNotFound())
+              .andReturn();
+
+      // assert
+      verify(userRepository, times(1)).findById(1L);
+      Map<String, Object> json = responseToJson(response);
+      assertEquals("User with id 1 not found", json.get("message"));
   }
 }
