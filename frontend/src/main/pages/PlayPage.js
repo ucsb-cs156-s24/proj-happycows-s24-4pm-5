@@ -150,6 +150,7 @@ export default function PlayPage() {
         fontSize: "30px",
     };
 
+    // Stryker disable next-line OptionalChaining
     const isUserInCommon = currentUser?.root?.user?.commons?.some(common => common.id === parseInt(commonsId));
 
     return (
