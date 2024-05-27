@@ -1,4 +1,5 @@
 package edu.ucsb.cs156.happiercows.controllers;
+import edu.ucsb.cs156.happiercows.errors.EntityNotFoundException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
