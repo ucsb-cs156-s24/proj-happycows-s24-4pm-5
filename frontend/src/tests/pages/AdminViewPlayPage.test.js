@@ -91,7 +91,7 @@ describe("AdminViewPlayPage tests", () => {
         );
     });
 
-    test("Make sure that both the Announcements and Welcome Farmer components show up", async () => {
+    test("Make sure that both the Common Overview and Welcome Farmer components show up", async () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
@@ -100,7 +100,7 @@ describe("AdminViewPlayPage tests", () => {
             </QueryClientProvider>
         );
 
-        expect(await screen.findByText(/Announcements/)).toBeInTheDocument();
+        expect(await screen.findByText(/Common Overview/)).toBeInTheDocument();
         expect(await screen.findByTestId("CommonsPlay")).toBeInTheDocument();
     });
 

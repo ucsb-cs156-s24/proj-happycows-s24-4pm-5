@@ -10,9 +10,12 @@ export default function CommonsOverview({ commonsPlus, currentUser }) {
     // Stryker disable next-line all
     const leaderboardButtonClick = () => { navigate("/leaderboard/" + commonsPlus.commons.id) };
     const showLeaderboard = (hasRole(currentUser, "ROLE_ADMIN") || commonsPlus.commons.showLeaderboard );
+    // Stryker disable next-line all
+    const announcementsButtonClick = () => { navigate("/announcements/" + commonsPlus.commons.id) };
+    const showAnnouncements = (hasRole(currentUser, "ROLE_ADMIN") || commonsPlus.commons.showAnnouncements );
     return (
         <Card data-testid="CommonsOverview">
-            <Card.Header as="h5">Announcements</Card.Header>
+            <Card.Header as="h5">Common Overview</Card.Header>
             <Card.Body>
                 <Row>
                     <Col>
@@ -23,6 +26,12 @@ export default function CommonsOverview({ commonsPlus, currentUser }) {
                         {showLeaderboard &&
                         (<Button variant="outline-success" data-testid="user-leaderboard-button" onClick={leaderboardButtonClick}>
                             Leaderboard
+                        </Button>)}
+                    </Col>
+                    <Col>
+                    {showAnnouncements &&
+                        (<Button variant="outline-success" data-testid="user-announcements-button" onClick={announcementsButtonClick}>
+                            Announcements
                         </Button>)}
                     </Col>
                 </Row>

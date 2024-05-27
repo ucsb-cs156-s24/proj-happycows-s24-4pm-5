@@ -8,6 +8,7 @@ import CommonsOverview from "main/components/Commons/CommonsOverview";
 import PlayPage from "main/pages/PlayPage";
 import commonsFixtures from "fixtures/commonsFixtures"; 
 import leaderboardFixtures from "fixtures/leaderboardFixtures";
+import { announcementFixtures } from "fixtures/announcementFixtures";
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import commonsPlusFixtures from "fixtures/commonsPlusFixtures";
@@ -83,5 +84,55 @@ describe("CommonsOverview tests", () => {
             expect(axiosMock.history.get.length).toEqual(3);
         });
         expect(() => screen.getByTestId("user-leaderboard-button")).toThrow();
+    });
+
+
+
+
+    test("Redirects to the AnnouncementPage for an admin when you click visit", async () => {
+        apiCurrentUserFixtures.adminUser.user.commons = commonsFixtures.oneCommons[0];
+        axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.adminUser);
+        axiosMock.onGet("/api/commons/plus", {params: {id:1}}).reply(200, commonsPlusFixtures.oneCommonsPlus[0]);
+        axiosMock.onGet("/api/annoucement/all").reply(200, announcementFixtures.threeAnnouncements);
+        render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <PlayPage />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+        await waitFor(() => {
+            expect(axiosMock.history.get.length).toEqual(5);
+        });
+        expect(await screen.findByTestId("user-announcements-button")).toBeInTheDocument();
+        const annoucementButton = screen.getByTestId("user-announcements-button");
+        fireEvent.click(annoucementButton);
+        //expect(mockNavigate).toBeCalledWith({ "to": "/leaderboard/1" });
+    });
+
+    test("No annoucementPage for an ordinary user when commons has showannoucement = false", async () => {
+        const ourCommons = {
+            ...commonsFixtures.oneCommons,
+            showAnnouncements : false
+        };
+        const ourCommonsPlus = {
+            ...commonsPlusFixtures.oneCommonsPlus,
+            commons : ourCommons
+        }
+        apiCurrentUserFixtures.userOnly.user.commonsPlus = commonsPlusFixtures.oneCommonsPlus[0];
+        axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
+        axiosMock.onGet("/api/commons/plus", {params: {id:1}}).reply(200, ourCommonsPlus);
+        axiosMock.onGet("/api/annoucement/all").reply(200, announcementFixtures.threeAnnouncements);
+        render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <PlayPage />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+        await waitFor(() => {
+            expect(axiosMock.history.get.length).toEqual(3);
+        });
+        expect(() => screen.getByTestId("user-announcements-button")).toThrow();
     });
 });
