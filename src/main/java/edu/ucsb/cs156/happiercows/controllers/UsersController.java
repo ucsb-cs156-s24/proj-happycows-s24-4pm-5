@@ -35,3 +35,28 @@ public class UsersController extends ApiController {
         return ResponseEntity.ok().body(body);
     }
 }
+
+@Operation(summary = "Suspend user using id")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
+@PostMapping("/suspend")
+public Object suspendUser( @Parameter(name = "id", description = "Long, id number of user to be suspended", example = "1", required = true) @RequestParam Long id){
+    User user = userRepository.findById(id)
+    .orElseThrow(() -> new EntityNotFoundException(User.class, id));
+
+    user.setSuspended(true);
+    userRepository.save(user);
+    return genericMessage("User with id %s has been suspended".formatted(id));
+}
+
+@Operation(summary = "Restore user using id")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
+@PostMapping("/restore")
+public Object restoreUser( @Parameter(name = "id", description = "Long, id number of user to be restored", example = "1", required = true) @RequestParam Long id){
+    User user = userRepository.findById(id)
+    .orElseThrow(() -> new EntityNotFoundException(User.class, id));
+
+    user.setSuspended(false);
+    userRepository.save(user);
+    return genericMessage("User with id %s has been restored".formatted(id));
+}
+
