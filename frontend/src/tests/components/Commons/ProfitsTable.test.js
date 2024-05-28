@@ -43,7 +43,7 @@ describe("ProfitsTable tests", () => {
 
     });
 
-    test("Pagination and slicing works correctly", () => {
+    test("One page test", () => {
         render(<ProfitsTable profits={profitsFixtures.threeProfits} />);
         
         // Check initial rows displayed
@@ -54,8 +54,8 @@ describe("ProfitsTable tests", () => {
         expect(cowCells).toHaveLength(3);
 
         // The profitsFixtures.threeProfits only has 3 entries, so there won't be a second page
-        expect(screen.queryByText("$54.60")).toBeInTheDocument();
-        expect(screen.queryByText("$52.80")).toBeInTheDocument();
+        expect(screen.getByText("$54.60")).toBeInTheDocument();
+        expect(screen.getByText("$52.80")).toBeInTheDocument();
     });
 
     test("Button styles are correct", () => {
@@ -71,6 +71,8 @@ describe("ProfitsTable tests", () => {
         expect(nextButton).toHaveStyle('background-color: #cccccc');
         expect(lastButton).toHaveStyle('background-color: #cccccc');
         expect(previousButton).toHaveStyle('background-color: #cccccc');
+
+        expect(firstButton).toHaveStyle("cursor: not-allowed");
     });
 
     test("Pagination Test", async () => {
@@ -91,7 +93,7 @@ describe("ProfitsTable tests", () => {
         expect(lastButton).toBeDisabled();
     });
 
-    test("Pagination handles page changes correctly", () => {
+    test("Pagination handles page changes", () => {
         const profitsWithMoreThanFiveItems = [
             ...profitsFixtures.threeProfits,
             ...profitsFixtures.threeProfits,
@@ -111,6 +113,17 @@ describe("ProfitsTable tests", () => {
         expect(lastButton).toHaveStyle('background-color: #007bff');
         expect(firstButton).toHaveStyle('background-color: #cccccc');
         expect(previousButton).toHaveStyle('background-color: #cccccc');
+
+        expect(firstButton).toHaveStyle("cursor: not-allowed");
+
+        expect(nextButton).toHaveStyle('color: white');
+        expect(nextButton).toHaveStyle('boarder:');
+        expect(nextButton).toHaveStyle('border-radius: 20px');
+        expect(nextButton).toHaveStyle('padding: 5px 15px');
+        expect(nextButton).toHaveStyle('margin: 0 5px');
+        expect(nextButton).toHaveStyle('cursor: pointer');
+        expect(nextButton).toHaveStyle('outline: none');
+    
 
         // Click Next to go to the second page
         fireEvent.click(nextButton);
@@ -158,5 +171,30 @@ describe("ProfitsTable tests", () => {
         largeProfitsFixture.slice(0, 5).forEach((profit, index) => {
             expect(screen.getByTestId(`ProfitsTable-cell-row-${index}-col-Profit`)).toHaveTextContent(`$${profit.amount.toFixed(2)}`);
         });
+    });
+
+    test("Slicing and data rendering", () => {
+        render(<ProfitsTable profits={largeProfitsFixture} />);
+        const rows = screen.getAllByRole('row');
+        expect(rows).toHaveLength(6); // 1 header row + 5 data rows
+    });
+
+    test("Columns are rendered correctly", () => {
+        render(<ProfitsTable profits={profitsFixtures.threeProfits} />);
+        const profitCells = screen.getAllByTestId(/^ProfitsTable-cell-row-\d+-col-Profit$/);
+        const dateCells = screen.getAllByTestId(/^ProfitsTable-cell-row-\d+-col-timestamp$/);
+        const healthCells = screen.getAllByTestId(/^ProfitsTable-cell-row-\d+-col-Health$/);
+        const numCowsCells = screen.getAllByTestId(/^ProfitsTable-cell-row-\d+-col-numCows$/);
+
+        expect(profitCells).toHaveLength(3);
+        expect(dateCells).toHaveLength(3);
+        expect(healthCells).toHaveLength(3);
+        expect(numCowsCells).toHaveLength(3);
+
+        // Check content of the first row
+        expect(profitCells[0]).toHaveTextContent('$58.20');
+        expect(dateCells[0]).toHaveTextContent('5/15/2023, 20:50:00');
+        expect(healthCells[0]).toHaveTextContent('97.000%');
+        expect(numCowsCells[0]).toHaveTextContent('6');
     });
 });
