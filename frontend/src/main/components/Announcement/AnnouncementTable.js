@@ -5,6 +5,7 @@ import { useBackendMutation } from "main/utils/useBackend";
 import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/announcementUtils"
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
+import "./AnnouncementText.css"
 
 export default function AnnouncementTable({ announcements, currentUser }) {
 
@@ -43,6 +44,7 @@ export default function AnnouncementTable({ announcements, currentUser }) {
         {
             Header: 'Announcement',
             accessor: 'announcementText',
+            Cell: ({ value }) => <div className="announcement-text">{value}</div>,
         }
     ];
 
