@@ -5,6 +5,7 @@ import { useBackend} from "main/utils/useBackend";
 import { useParams } from "react-router-dom";
 import AnnouncementTable from "main/components/Announcement/AnnouncementTable";
 import { useCurrentUser } from "main/utils/currentUser";
+import { Button } from "react-bootstrap";
 
 export default function AdminAnnouncementsPage() {
     let { commonsId } = useParams();
@@ -42,6 +43,13 @@ export default function AdminAnnouncementsPage() {
         <BasicLayout>
             <div className="pt-2">
                 <h1>Announcements for {commonsName}</h1>
+                <Button
+                    variant="primary"
+                    href={`/admin/announcements/${commonsId}/create`}
+                    style={{ float: "right" }}
+                >
+                    Create Announcement 
+                </Button>
                 <AnnouncementTable announcements={announcements} currentUser={currentUser}/>
             </div>
         </BasicLayout>
