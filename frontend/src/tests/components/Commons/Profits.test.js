@@ -33,9 +33,9 @@ describe("Profits tests", () => {
         expect(screen.getByTestId("ProfitsTable-cell-row-1-col-timestamp")).toHaveTextContent("5/16/2023, 20:55:00");
         expect(screen.getByTestId("ProfitsTable-cell-row-2-col-timestamp")).toHaveTextContent("5/15/2023, 20:50:00");
 
-        expect(screen.getByTestId("ProfitsTable-cell-row-0-col-Health")).toHaveTextContent(/88.0%/);
-        expect(screen.getByTestId("ProfitsTable-cell-row-1-col-Health")).toHaveTextContent(/91.0%/);
-        expect(screen.getByTestId("ProfitsTable-cell-row-2-col-Health")).toHaveTextContent(/97.0%/);
+        expect(screen.getByTestId("ProfitsTable-cell-row-0-col-Health")).toHaveTextContent(/88.000%/);
+        expect(screen.getByTestId("ProfitsTable-cell-row-1-col-Health")).toHaveTextContent(/91.000%/);
+        expect(screen.getByTestId("ProfitsTable-cell-row-2-col-Health")).toHaveTextContent(/97.000%/);
 
         expect(screen.getByTestId("ProfitsTable-cell-row-0-col-numCows")).toHaveTextContent(/6/);
         expect(screen.getByTestId("ProfitsTable-cell-row-1-col-numCows")).toHaveTextContent(/6/);
