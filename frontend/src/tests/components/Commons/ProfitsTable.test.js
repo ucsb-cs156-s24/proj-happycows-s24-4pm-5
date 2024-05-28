@@ -116,13 +116,12 @@ describe("ProfitsTable tests", () => {
 
         expect(firstButton).toHaveStyle("cursor: not-allowed");
 
+        expect(firstButton).toHaveStyle('margin-top: 20px');
         expect(nextButton).toHaveStyle('color: white');
-        expect(nextButton).toHaveStyle('boarder:');
         expect(nextButton).toHaveStyle('border-radius: 20px');
         expect(nextButton).toHaveStyle('padding: 5px 15px');
-        expect(nextButton).toHaveStyle('margin: 0 5px');
+        expect(nextButton).toHaveStyle('margin: 20px 5px 0 5px');
         expect(nextButton).toHaveStyle('cursor: pointer');
-        expect(nextButton).toHaveStyle('outline: none');
     
 
         // Click Next to go to the second page
@@ -133,6 +132,11 @@ describe("ProfitsTable tests", () => {
         expect(previousButton).toHaveStyle('background-color: #007bff');
         expect(nextButton).toHaveStyle('background-color: #cccccc');
         expect(lastButton).toHaveStyle('background-color: #cccccc');
+
+        expect(screen.getByTestId(`ProfitsTable-cell-row-0-col-Profit`)).toHaveTextContent("$52.80");
+        expect(screen.getByTestId(`ProfitsTable-cell-row-0-col-timestamp`)).toHaveTextContent("5/17/2023, 20:56:22");
+        expect(screen.getByTestId(`ProfitsTable-cell-row-0-col-Health`)).toHaveTextContent("88.000%");
+        expect(screen.getByTestId(`ProfitsTable-cell-row-0-col-numCows`)).toHaveTextContent("6");
 
         // Click Previous to go back to the first page
         fireEvent.click(previousButton);
