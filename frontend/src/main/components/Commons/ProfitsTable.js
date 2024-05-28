@@ -13,33 +13,32 @@ export default function ProfitsTable({ profits }) {
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
     };
-    const memoizedColumns = React.useMemo(() => 
-        [
-            {
-                Header: "Profit",
-                accessor: (row) => `$${row.amount.toFixed(2)}`,
-            },
-            {
-                Header: "Date",
-                accessor: "timestamp",
-                Cell: ({ value }) => {
-                    const date = new Date(value);
-                    return date.toLocaleString('en-US', {
-                        year: 'numeric', month: 'numeric', day: 'numeric',
-                        hour: '2-digit', minute: '2-digit', second: '2-digit',
-                        hour12: false
-                    });
-                }
-            },
-            {
-                Header: "Health",
-                accessor: (row) => `${row.avgCowHealth.toFixed(3)}%`
-            },
-            {
-                Header: "Cows",
-                accessor: "numCows",
-            },
-        ],);
+    const columns = [
+        {
+            Header: "Profit",
+            accessor: (row) => `$${row.amount.toFixed(2)}`,
+        },
+        {
+            Header: "Date",
+            accessor: "timestamp",
+            Cell: ({ value }) => {
+                const date = new Date(value);
+                return date.toLocaleString('en-US', {
+                    year: 'numeric', month: 'numeric', day: 'numeric',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit',
+                    hour12: false
+                });
+            }
+        },
+        {
+            Header: "Health",
+            accessor: (row) => `${row.avgCowHealth.toFixed(3)}%`
+        },
+        {
+            Header: "Cows",
+            accessor: "numCows",
+        },
+    ];
     const buttonStyle = {
         backgroundColor: '#007bff',
         color: 'white',
@@ -60,7 +59,7 @@ export default function ProfitsTable({ profits }) {
         <div>
             <OurTable
                 data={currentRows}
-                columns={memoizedColumns}
+                columns={columns}
                 testid={"ProfitsTable"}
             />
             <div>
