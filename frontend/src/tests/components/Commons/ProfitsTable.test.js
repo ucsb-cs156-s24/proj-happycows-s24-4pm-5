@@ -201,4 +201,51 @@ describe("ProfitsTable tests", () => {
         expect(healthCells[0]).toHaveTextContent('97.000%');
         expect(numCowsCells[0]).toHaveTextContent('6');
     });
+
+    test("Clicking functions are operating correctly", () => {
+        const profitsWithMoreThanTenItems = [
+            ...profitsFixtures.threeProfits,
+            ...profitsFixtures.threeProfits,
+            ...profitsFixtures.threeProfits,
+            ...profitsFixtures.threeProfits,
+       ]
+       render(<ProfitsTable profits={profitsWithMoreThanTenItems} />);
+
+       const firstButton = screen.getByText('First');
+        const nextButton = screen.getByText('Next');
+        const lastButton = screen.getByText('Last');
+        const previousButton = screen.getByText('Previous');
+
+        // Initial state: first page
+        expect(firstButton).toBeDisabled();
+        expect(previousButton).toBeDisabled();
+        expect(nextButton).toHaveStyle('background-color: #007bff');
+        expect(lastButton).toHaveStyle('background-color: #007bff');
+        expect(firstButton).toHaveStyle('background-color: #cccccc');
+        expect(previousButton).toHaveStyle('background-color: #cccccc');
+
+        fireEvent.click(nextButton);
+        expect(firstButton).not.toBeDisabled();
+        expect(previousButton).not.toBeDisabled();
+        expect(lastButton).not.toBeDisabled();
+        expect(nextButton).not.toBeDisabled(); 
+
+        fireEvent.click(lastButton);
+        expect(lastButton).toBeDisabled();
+        expect(nextButton).toBeDisabled(); 
+        expect(firstButton).not.toBeDisabled();
+        expect(previousButton).not.toBeDisabled();
+
+        fireEvent.click(previousButton);
+        expect(firstButton).not.toBeDisabled();
+        expect(previousButton).not.toBeDisabled();
+        expect(lastButton).not.toBeDisabled();
+        expect(nextButton).not.toBeDisabled(); 
+
+        fireEvent.click(previousButton);
+        expect(firstButton).toBeDisabled();
+        expect(previousButton).toBeDisabled();
+        expect(lastButton).not.toBeDisabled();
+        expect(nextButton).not.toBeDisabled();
+    });
 });
