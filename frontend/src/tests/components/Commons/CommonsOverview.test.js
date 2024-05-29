@@ -86,6 +86,8 @@ describe("CommonsOverview tests", () => {
             expect(axiosMock.history.get.length).toEqual(5);
         });
         expect(() => screen.getByTestId("user-leaderboard-button")).toThrow();
+        expect(screen.getByText("Failed to load announcements")).toBeInTheDocument();
+
     });
 
     test("Announcements show properly", async () => {
@@ -104,6 +106,8 @@ describe("CommonsOverview tests", () => {
             expect(axiosMock.history.get.length).toEqual(5);
         });
         expect(screen.getByText("Announcement 1")).toBeInTheDocument();
+        expect(screen.getByText("Announcement 2")).toBeInTheDocument();
+        expect(screen.getByText("Announcement 3")).toBeInTheDocument();
         announcementFixtures.threeAnnouncements.forEach(announcement => {
             expect(screen.getByText(announcement.announcementText)).toBeInTheDocument();
         });
