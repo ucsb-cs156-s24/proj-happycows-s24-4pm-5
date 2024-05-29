@@ -178,8 +178,9 @@ describe("Modal tests", () => {
     // Verify that the modal is shown by checking for the "modal-open" class
     await waitFor(() => {
       expect(document.body).toHaveClass('modal-open');
-      expect(screen.queryByText("Are you sure you want to suspend this user?")).toBeInTheDocument();
     });
+    expect(screen.getByText("Are you sure you want to suspend this user?")).toBeInTheDocument();
+
   });
 
   test("Clicking Restore button opens the modal for adminUser", async () => {
@@ -204,8 +205,9 @@ describe("Modal tests", () => {
     // Verify that the modal is shown by checking for the "modal-open" class
     await waitFor(() => {
       expect(document.body).toHaveClass('modal-open');
-      expect(screen.queryByText("Are you sure you want to restore this user?")).toBeInTheDocument();
     });
+    expect(screen.getByText("Are you sure you want to restore this user?")).toBeInTheDocument();
+
   });
 
 
@@ -241,8 +243,9 @@ describe("Modal tests", () => {
     // Verify that the modal is hidden by checking for the absence of the "modal-open" class
     await waitFor(() => {
       expect(document.body).not.toHaveClass('modal-open');
-      expect(screen.queryByText("Are you sure you want to suspend this user?")).not.toBeInTheDocument();
     });
+    expect(screen.queryByText("Are you sure you want to suspend this user?")).not.toBeInTheDocument();
+
   });
 
   test("Clicking Restore this User button restores the user", async () => {
@@ -276,8 +279,9 @@ describe("Modal tests", () => {
     // Verify that the modal is hidden by checking for the absence of the "modal-open" class
     await waitFor(() => {
       expect(document.body).not.toHaveClass('modal-open');
-      expect(screen.queryByText("Are you sure you want to restore this user?")).not.toBeInTheDocument();
     });
+    expect(screen.queryByText("Are you sure you want to restore this user?")).not.toBeInTheDocument();
+
   });
 
 
