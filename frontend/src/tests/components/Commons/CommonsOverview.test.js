@@ -39,7 +39,9 @@ describe("CommonsOverview tests", () => {
         render(
             <CommonsOverview commonsPlus={commonsPlusFixtures.oneCommonsPlus[0]} />
         );
+        
         axiosMock.onGet("/api/announcement/all").reply(200,);
+        expect(axiosMock.history.get.length).toEqual(1);
         expect(screen.queryByText("Announcement 1")).not.toBeInTheDocument();
 
     });
@@ -146,4 +148,60 @@ describe("CommonsOverview tests", () => {
             expect(screen.queryByText(announcement.announcementText)).not.toBeInTheDocument();
         });
     });
+
+    test('displays announcements when available and handles empty announcements', async () => {
+        // Setup with announcements
+        axiosMock.onGet("/api/announcements/getbycommonsid?commonsId=4").reply(200, announcementFixtures.threeAnnouncements);
+        render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <CommonsOverview commonsPlus={commonsPlusFixtures.oneCommonsPlus[0]} currentUser={apiCurrentUserFixtures.adminUser.user} />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+    
+        // Check that all announcements are displayed
+        await waitFor(() => {
+            announcementFixtures.threeAnnouncements.forEach(announcement => {
+                expect(screen.getByText(announcement.announcementText)).toBeInTheDocument();
+            });
+        });
+    
+        // Setup with no announcements
+        axiosMock.onGet("/api/announcements/getbycommonsid?commonsId=4").reply(200, []);
+        render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <CommonsOverview commonsPlus={commonsPlusFixtures.oneCommonsPlus[0]} currentUser={apiCurrentUserFixtures.adminUser.user} />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+    
+        await waitFor(() => {
+            expect(screen.getByText("No announcements available.")).toBeInTheDocument();
+        });
+    });
+
+    test('handles boundary conditions for announcements display', async () => {
+        // Assuming an impossible negative case might be mutated
+        const negativeAnnouncementMock = {
+            ...announcementFixtures.threeAnnouncements,
+            length: -1
+        };
+    
+        axiosMock.onGet("/api/announcements/getbycommonsid?commonsId=4").reply(200, negativeAnnouncementMock);
+        render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <CommonsOverview commonsPlus={commonsPlusFixtures.oneCommonsPlus[0]} currentUser={apiCurrentUserFixtures.adminUser.user} />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+    
+        // Check for correct handling of unexpected data
+        await waitFor(() => {
+            expect(screen.getByText("No announcements available.")).toBeInTheDocument();
+        });
+    });
+    
 });
