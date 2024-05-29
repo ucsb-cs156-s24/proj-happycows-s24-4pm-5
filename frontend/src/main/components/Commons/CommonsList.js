@@ -6,7 +6,7 @@ const CommonsList = (props) => {
     const defaultMessage = props.title?.includes("Join") ? "join" : "visit";
     // Stryker disable next-line all: don't test CSS params
     function getRandomColor(id) {
-        // Stryker disable next-line all: don't test CSS params
+        // Stryker disable all
         const colors = [
             "#FF4500", 
             "#DE3163", 
@@ -34,6 +34,7 @@ const CommonsList = (props) => {
             "#FFD700", 
             "#DAA520"
         ];
+        // Stryker restore all
         // Stryker disable next-line all: don't test CSS params
         return colors[id % colors.length];
     }
