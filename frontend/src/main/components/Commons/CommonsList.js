@@ -5,15 +5,42 @@ import { Card, Container, Row, Col } from "react-bootstrap";
 const CommonsList = (props) => {
     const defaultMessage = props.title?.includes("Join") ? "join" : "visit";
     // Stryker disable next-line all: don't test CSS params
-    function getRandomColor() {
+    function getRandomColor(id) {
         // Stryker disable next-line all: don't test CSS params
-        const red = Math.floor(Math.random() * 256);    
+        const colors = [
+            "#FF4500", 
+            "#DE3163", 
+            "#6495ED", 
+            "#FFF8DC", 
+            "#DC143C", 
+            "#00FFFF", 
+            "#00008B", 
+            "#008B8B", 
+            "#B8860B", 
+            "#A9A9A9", 
+            "#006400", 
+            "#BDB76B", 
+            "#8B008B", 
+            "#556B2F", 
+            "#FF8C00", 
+            "#9932CC", 
+            "#8B0000", 
+            "#E9967A", 
+            "#8FBC8F", 
+            "#483D8B", 
+            "#2F4F4F", 
+            "#00CED1", 
+            "#9400D3", 
+            "#FF1493", 
+            "#00BFFF", 
+            "#696969", 
+            "#1E90FF", 
+            "#B22222", 
+            "#FFD700", 
+            "#DAA520"
+        ];
         // Stryker disable next-line all: don't test CSS params
-        const green = Math.floor(Math.random() * 256);
-        // Stryker disable next-line all: don't test CSS params 
-        const blue = Math.floor(Math.random() * 256);
-        // Stryker disable next-line all: don't test CSS params
-        return `rgba(${red}, ${green}, ${blue},0.3)`; 
+        return colors[id % colors.length];
     }
     
 
@@ -40,7 +67,10 @@ const CommonsList = (props) => {
                 <Card.Subtitle>
                     <Container>
                         <Row>
-                            <Col data-testid="commonsList-subtitle-name" sx={4}>Common's Name</Col>
+                            <Col data-testid="commonsList-subtitle-name" sx={4} style={
+                    // Stryker disable next-line all: don't test CSS params
+                    { fontSize: "20px", fontWeight: "bold",fontFamily:'fantasy'}
+                } >Common's Name</Col>
                             <Col sm={4}></Col>
                         </Row>
                     </Container>
@@ -48,7 +78,7 @@ const CommonsList = (props) => {
                 {
                     props.commonList.map(
                         
-                        (c) => (<CommonsCard key={c.id} commons={c} buttonText={props.buttonText} buttonLink={props.buttonLink} color={getRandomColor()}/>)
+                        (c) => (<CommonsCard key={c.id} commons={c} buttonText={props.buttonText} buttonLink={props.buttonLink} color={getRandomColor(c.id)}/>)
                     )
                 }
             </React.Fragment> 
