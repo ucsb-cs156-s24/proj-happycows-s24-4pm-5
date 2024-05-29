@@ -108,7 +108,7 @@ describe("AdminCreateAnnouncementsPage tests", () => {
 
         fireEvent.change(startDateField, { target: { value: '2024-05-28T00:00' } });
         fireEvent.change(endDateField, { target: { value: '2024-06-28T00:00' } });
-        fireEvent.change(announcementTextField, { target: { value: 'Great' } });
+        fireEvent.change(announcementTextField, { target: { value: 'test' } });
 
         expect(submitButton).toBeInTheDocument();
 
@@ -121,7 +121,7 @@ describe("AdminCreateAnnouncementsPage tests", () => {
                 "commonsId": "1",
                 "startDate": "2024-05-28T00:00",
                 "endDate": "2024-06-28T00:00",
-                "announcementText": "Great"
+                "announcementText": "test"
         });
 
         expect(mockToast).toBeCalledWith("New Announcement Created - commonsId: 1 id: 1 startDate: 2024-05-28T00:00 endDate: 2024-06-28T00:00 announcmentText: test");
