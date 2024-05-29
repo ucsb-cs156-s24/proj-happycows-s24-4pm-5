@@ -15,7 +15,7 @@ export default function CommonsOverview({ commonsPlus, currentUser }) {
     const [announcements, setAnnouncements] = useState([]);
     // Stryker disable next-line all
     const [loading, setLoading] = useState(false);
-    // Stryker disable next-line all
+    // Stryker disable once all
     const [error, setError] = useState('');
 
     const commonsId = commonsPlus.commons.id;
@@ -58,8 +58,9 @@ export default function CommonsOverview({ commonsPlus, currentUser }) {
                         </Button>)}
                     </Col>
                 </Row>
-                // Stryker disable next-line all
-                <div style={{ marginTop: '20px' }}>
+                <div 
+                // Stryker disable once all
+                style={{ marginTop: '20px' }}>
                     {loading ? (
                         <p>Loading announcements...</p>
                     ) : error ? (

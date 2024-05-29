@@ -39,6 +39,9 @@ describe("CommonsOverview tests", () => {
         render(
             <CommonsOverview commonsPlus={commonsPlusFixtures.oneCommonsPlus[0]} />
         );
+        axiosMock.onGet("/api/announcement/all").reply(200,);
+        expect(screen.queryByText("Announcement 1")).not.toBeInTheDocument();
+
     });
 
     test("Redirects to the LeaderboardPage for an admin when you click visit", async () => {
@@ -136,7 +139,9 @@ describe("CommonsOverview tests", () => {
         await waitFor(() => {
             expect(axiosMock.history.get.length).toEqual(5);
         });
-        expect(screen.queryByText("Announcements")).not.toBeInTheDocument();
+        expect(screen.queryByText("Announcement 1")).not.toBeInTheDocument();
+        expect(screen.queryByText("Announcement 2")).not.toBeInTheDocument();
+        expect(screen.queryByText("Announcement 3")).not.toBeInTheDocument();
         announcementFixtures.threeAnnouncements.forEach(announcement => {
             expect(screen.queryByText(announcement.announcementText)).not.toBeInTheDocument();
         });
