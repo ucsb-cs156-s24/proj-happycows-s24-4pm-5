@@ -53,7 +53,9 @@ export default function CommonsOverview({ commonsPlus, currentUser }) {
                         </Button>)}
                     </Col>
                 </Row>
-                <div>
+                <div 
+                // Stryker disable next-line all -- Disable mutation on the next line
+                style={{ marginTop: '20px' }}>
                     {loading ? (
                         <p>Loading announcements...</p>
                     ) : error ? (
