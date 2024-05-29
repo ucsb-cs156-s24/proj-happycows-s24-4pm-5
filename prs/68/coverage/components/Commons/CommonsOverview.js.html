@@ -145,14 +145,7 @@
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a>
-<a name='L90'></a><a href='#L90'>90</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L83'></a><a href='#L83'>83</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,43 +154,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">199x</span>
+<span class="cline-any cline-yes">211x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">199x</span>
-<span class="cline-any cline-yes">199x</span>
+<span class="cline-any cline-yes">211x</span>
+<span class="cline-any cline-yes">211x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">199x</span>
+<span class="cline-any cline-yes">211x</span>
+<span class="cline-any cline-yes">211x</span>
+<span class="cline-any cline-yes">211x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">199x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">199x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">199x</span>
-<span class="cline-any cline-yes">199x</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">211x</span>
+<span class="cline-any cline-yes">211x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">199x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">211x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -222,8 +209,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -254,11 +240,9 @@ export default function CommonsOverview({ commonsPlus, currentUser }) {
     // Stryker disable next-line all
     const leaderboardButtonClick = () =&gt; { navigate("/leaderboard/" + commonsPlus.commons.id) };
     const showLeaderboard = (hasRole(currentUser, "ROLE_ADMIN") || commonsPlus.commons.showLeaderboard );
-    // Stryker disable next-line all
+    // Stryker disable all: useState is tested in React, no need to test it again
     const [announcements, setAnnouncements] = useState([]);
-    // Stryker disable next-line all
     const [loading, setLoading] = useState(false);
-    // Stryker disable once all
     const [error, setError] = useState('');
 &nbsp;
     const commonsId = commonsPlus.commons.id;
@@ -270,20 +254,17 @@ export default function CommonsOverview({ commonsPlus, currentUser }) {
                 const response = await axios.get(`/api/announcements/getbycommonsid?commonsId=${commonsId}`);
                 setAnnouncements(response.data);
             } catch (error) {
-                // Stryker disable next-line all
                 console.error('Failed to fetch announcements:', error);
-                // Stryker disable next-line all
                 setError('Failed to load announcements');
             } finally {
-                // Stryker disable next-line all
                 setLoading(false);
             }
         };
 &nbsp;
         fetchData();
-    // Stryker disable next-line all  
     }, [commonsId]);
 &nbsp;
+// Stryker restore all
 &nbsp;
     return (
         &lt;Card data-testid="CommonsOverview"&gt;
@@ -301,9 +282,7 @@ export default function CommonsOverview({ commonsPlus, currentUser }) {
                         &lt;/Button&gt;)}
                     &lt;/Col&gt;
                 &lt;/Row&gt;
-                &lt;div 
-                // Stryker disable once all
-                style={{ marginTop: '20px' }}&gt;
+                &lt;div&gt;
                     {loading ? (
                         &lt;p&gt;Loading announcements...&lt;/p&gt;
                     ) : error ? (
@@ -337,7 +316,7 @@ export default function CommonsOverview({ commonsPlus, currentUser }) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue May 28 2024 19:01:17 GMT-0700 (Pacific Daylight Time)
+                at Tue May 28 2024 19:14:03 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
