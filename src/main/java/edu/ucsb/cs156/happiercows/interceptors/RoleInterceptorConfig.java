@@ -6,13 +6,13 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Component
-public class RoleUserInterceptorAppConfig implements WebMvcConfigurer {
+public class RoleInterceptorAppConfig implements WebMvcConfigurer {
    @Autowired
-   RoleUserInterceptor roleUserInterceptor;
+   RoleInterceptor roleInterceptor;
 
    @Override
    public void addInterceptors(InterceptorRegistry registry) {
-      registry.addInterceptor(roleUserInterceptor);
+      registry.addInterceptor(roleInterceptor);
    }
 
 }
