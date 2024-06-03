@@ -47,6 +47,11 @@ body {
       background-position: 200% center;
     }
   }
+.announcement-text {
+    max-width: 500px; 
+    word-wrap: break-word;
+    white-space: normal;
+}
 .board {
     width: 60%;
     margin: auto;
@@ -56,4 +61,4 @@ body {
     text-align: center;
 }
 
-/*# sourceMappingURL=main.8f1202b7.css.map*/
+/*# sourceMappingURL=main.3e5dda95.css.map*/
