@@ -34,6 +34,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import edu.ucsb.cs156.happiercows.entities.User;
 import edu.ucsb.cs156.happiercows.repositories.UserRepository;
+import wiremock.javax.servlet.http.HttpServletResponse;
 
 @SpringBootTest
 @AutoConfigureMockMvc
