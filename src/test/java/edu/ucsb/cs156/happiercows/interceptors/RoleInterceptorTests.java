@@ -1,5 +1,3 @@
-//These tests are not yet finished.
-
 package edu.ucsb.cs156.happycows.interceptors;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -34,9 +32,9 @@ import org.springframework.web.servlet.HandlerExecutionChain;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import edu.ucsb.cs156.gauchoride.ControllerTestCase;
-import edu.ucsb.cs156.gauchoride.entities.User;
-import edu.ucsb.cs156.gauchoride.repositories.UserRepository;
+import edu.ucsb.cs156.happycows.ControllerTestCase;
+import edu.ucsb.cs156.happycows.entities.User;
+import edu.ucsb.cs156.happycows.repositories.UserRepository;
 
 @SpringBootTest
 @AutoConfigureMockMvc
