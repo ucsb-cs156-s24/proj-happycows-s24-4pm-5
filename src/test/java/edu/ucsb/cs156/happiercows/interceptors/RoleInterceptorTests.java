@@ -32,9 +32,8 @@ import org.springframework.web.servlet.HandlerExecutionChain;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import edu.ucsb.cs156.happycows.ControllerTestCase;
-import edu.ucsb.cs156.happycows.entities.User;
-import edu.ucsb.cs156.happycows.repositories.UserRepository;
+import edu.ucsb.cs156.happiercows.entities.User;
+import edu.ucsb.cs156.happiercows.repositories.UserRepository;
 
 @SpringBootTest
 @AutoConfigureMockMvc
