@@ -33,13 +33,21 @@ const CommonsCard = ({ buttonText, buttonLink, commons ,color}) => {
         }>
             <Container>
                 <Row>
-                    <Col sx={4} data-testid={`${testIdPrefix}-name-${commons.id}`}>{commons.name}</Col>
+                    <Col sx={4} data-testid={`${testIdPrefix}-name-${commons.id}` }style={
+                    // Stryker disable next-line all: don't test CSS params
+                    { fontSize: "20px", fontWeight: "bold",fontFamily:'fantasy'}
+                }
+                >{commons.name}</Col>
                     {buttonText != null &&
                         <Col sm={4}>
                             <Button
                                 data-testid={`${testIdPrefix}-button-${buttonText}-${commons.id}`}
                                 size="sm"
                                 className="mx-4"
+                                style={
+                                    // Stryker disable next-line all: don't test CSS params
+                                    { fontWeight: "bold",fontFamily:'fantasy'}
+                                }
                                 onClick={() => {
                                     if (buttonText === "Join" && isFutureDate(commons.startingDate)) {
                                         // Stryker disable next-line all: unable to read alert text in tests
