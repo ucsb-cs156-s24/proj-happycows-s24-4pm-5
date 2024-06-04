@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -130,7 +130,33 @@
 <a name='L65'></a><a href='#L65'>65</a>
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,15 +167,41 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">71x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">71x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">71x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">71x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">80x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -204,15 +256,38 @@ import { Card, Container, Row, Col } from "react-bootstrap";
 const CommonsList = (props) =&gt; {
     const defaultMessage = props.title?.includes("Join") ? "join" : "visit";
     // Stryker disable next-line all: don't test CSS params
-    function getRandomColor() {
+    function getRandomColor(id) {
+        // Stryker disable all
+        const colors = [
+            "#FF4500", 
+            "#DE3163", 
+            "#6495ED", 
+            "#FFF8DC", 
+            "#DC143C", 
+            "#00FFFF",  
+            "#BDB76B", 
+            "#8B008B", 
+            "#556B2F", 
+            "#FF8C00", 
+            "#9932CC", 
+            "#8B0000", 
+            "#E9967A", 
+            "#8FBC8F", 
+            "#483D8B", 
+            "#2F4F4F", 
+            "#00CED1", 
+            "#9400D3", 
+            "#FF1493", 
+            "#00BFFF", 
+            "#696969", 
+            "#1E90FF", 
+            "#B22222", 
+            "#FFD700", 
+            "#DAA520"
+        ];
+        // Stryker restore all
         // Stryker disable next-line all: don't test CSS params
-        const red = Math.floor(Math.random() * 256);    
-        // Stryker disable next-line all: don't test CSS params
-        const green = Math.floor(Math.random() * 256);
-        // Stryker disable next-line all: don't test CSS params 
-        const blue = Math.floor(Math.random() * 256);
-        // Stryker disable next-line all: don't test CSS params
-        return `rgba(${red}, ${green}, ${blue},0.3)`; 
+        return colors[id % colors.length];
     }
     
 &nbsp;
@@ -239,7 +314,10 @@ const CommonsList = (props) =&gt; {
                 &lt;Card.Subtitle&gt;
                     &lt;Container&gt;
                         &lt;Row&gt;
-                            &lt;Col data-testid="commonsList-subtitle-name" sx={4}&gt;Common's Name&lt;/Col&gt;
+                            &lt;Col data-testid="commonsList-subtitle-name" sx={4} style={
+                    // Stryker disable next-line all: don't test CSS params
+                    { fontSize: "20px", fontWeight: "bold",fontFamily:'fantasy'}
+                } &gt;Common's Name&lt;/Col&gt;
                             &lt;Col sm={4}&gt;&lt;/Col&gt;
                         &lt;/Row&gt;
                     &lt;/Container&gt;
@@ -247,7 +325,7 @@ const CommonsList = (props) =&gt; {
                 {
                     props.commonList.map(
                         
-                        (c) =&gt; (&lt;CommonsCard key={c.id} commons={c} buttonText={props.buttonText} buttonLink={props.buttonLink} color={getRandomColor()}/&gt;)
+                        (c) =&gt; (&lt;CommonsCard key={c.id} commons={c} buttonText={props.buttonText} buttonLink={props.buttonLink} color={getRandomColor(c.id)}/&gt;)
                     )
                 }
             &lt;/React.Fragment&gt; 
@@ -271,7 +349,7 @@ export default CommonsList;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue May 28 2024 22:33:22 GMT-0700 (Pacific Daylight Time)
+                at Tue Jun 04 2024 11:16:14 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
